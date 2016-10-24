@@ -4,6 +4,8 @@ MAINTAINER phpramework <phpramework@gmail.com>
 
 RUN apk update --no-cache \
     && apk add --no-cache \
+        git \
+        openssl \
         su-exec
 
 RUN apk add --no-cache  --virtual .pecl-deps \
