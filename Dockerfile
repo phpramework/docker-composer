@@ -5,8 +5,7 @@ MAINTAINER phpramework <phpramework@gmail.com>
 RUN apk update --no-cache \
     && apk add --no-cache \
         git \
-        openssl \
-        su-exec
+        openssl
 
 RUN mkdir -p /composer
 
