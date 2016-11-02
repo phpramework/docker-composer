@@ -1,4 +1,4 @@
-FROM phpramework/php-fpm
+FROM quay.io/phpramework/php-fpm
 
 MAINTAINER phpramework <phpramework@gmail.com>
 
