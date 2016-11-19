@@ -9,12 +9,14 @@ RUN apk update --no-cache \
 
 RUN mkdir -p /composer
 
-ENV COMPOSER_HOME /composer
+ENV COMPOSER_HOME=/composer \
+    COMPOSER_ALLOW_SUPERUSER=1
 
 COPY install-composer.sh /usr/local/bin/install-composer.sh
 
 RUN cd /tmp \
     && install-composer.sh \
+    && composer global require "hirak/prestissimo:^0.3" \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 ENV PATH $COMPOSER_HOME/vendor/bin:$PATH
