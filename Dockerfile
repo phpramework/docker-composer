@@ -17,6 +17,7 @@ COPY install-composer.sh /usr/local/bin/install-composer.sh
 RUN cd /tmp \
     && install-composer.sh \
     && composer global require "hirak/prestissimo:^0.3" \
+    && composer clear-cache \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 ENV PATH $COMPOSER_HOME/vendor/bin:$PATH
