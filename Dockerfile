@@ -7,22 +7,22 @@ RUN apk update --no-cache \
         git \
         openssl
 
-RUN mkdir -p /composer
 
 ENV COMPOSER_HOME=/composer \
     COMPOSER_ALLOW_SUPERUSER=1
+
+RUN mkdir -p $COMPOSER_HOME
 
 COPY install-composer.sh /usr/local/bin/install-composer.sh
 
 RUN cd /tmp \
     && install-composer.sh \
-    && composer global require "hirak/prestissimo:^0.3" \
-    && composer clear-cache \
+    && composer global require -a "hirak/prestissimo:^0.3" \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 ENV PATH $COMPOSER_HOME/vendor/bin:$PATH
 
-VOLUME ["/project", "/composer"]
+VOLUME ["/project", "$COMPOSER_HOME/cache"]
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
